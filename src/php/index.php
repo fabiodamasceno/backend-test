@@ -21,9 +21,29 @@ class Controller_API extends Controller
         */
     public function action_venues()
     {
-        $result = ORM::factory('Venue')
-        ->find_all();
-        $this->response->json($result);
+        $query = DB::select('venues.*', ['items.name', 'item_name'])
+            ->from('venues')
+            ->join('items', 'LEFT')
+            ->on('venues.id', '=', 'items.venue_id');
+
+        $result = $query->execute()->as_array();
+
+        $venues = array();
+        foreach ($result as $item) {
+            $key = $item['id'];
+            if (!isset($venues[$key])) {
+                $venue = [
+                    'id' => $key, 
+                    'name' => $item['name'], 
+                    'items' => [$item['item_name']]
+                ];
+                $venues[$key] = $venue;
+            } else {
+                $venues[$key]['items'][] = $item['item_name'];
+            }
+        }
+
+        $this->response->json(array_values($venues));
     }
 
     /**
@@ -42,8 +62,8 @@ class Controller_API extends Controller
             ->find_all();
         
         $venue = [
-            'bookingId' => $result->id,
-            'bookerName' => $result->name,
+            'id' => $result->id,
+            'name' => $result->name,
             'items' => []
         ];
 
@@ -51,8 +71,8 @@ class Controller_API extends Controller
             $venue['items'][] = [
                 'id' => $item->id,
                 'name' => $item->name,
-                $item->space,
-                $item->product
+                'space' => $item->space,
+                'product' => $item->product
             ];
         }
 
@@ -89,7 +109,7 @@ class Controller_API extends Controller
 
 // /venue or /venues
 Route::set('venues', 'venue(s)')->defaults([
-    'controller' => 'APIS',
+    'controller' => 'API',
     'action' => 'venues',
 ]);
 
