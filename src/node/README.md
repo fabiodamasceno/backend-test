@@ -27,7 +27,12 @@ Tests were written using Jest. The test files are next to source feature being t
 
 `yarn test:watch` will run tests and bring jest interactive console. The code coverage was disabled in watch mode to speed up feedback.
 
-By default Jest will try to find affected testes since the last commit. You can type 'a' to run all tests.
+By default Jest will try to find affected tests since the last commit. You can type `a` to run all tests.
+
+### Integration tests
+Integration tests uses [supertest](https://github.com/visionmedia/supertest) to start api and create a facade to make requests.
+Assertions are made using the awesome [jest snapshot](https://facebook.github.io/jest/docs/snapshot-testing.html) feature.
+This tools are awesome because they will assert that the api won't break any previous contract accidentaly.
 
 #### package.json tasks
 
