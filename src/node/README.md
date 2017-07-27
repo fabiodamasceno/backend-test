@@ -23,8 +23,11 @@ The command `yarn migrate` will create the database and apply migrations on a SQ
 `yarn dev:watch` will starts nodemon to compile and refresh the app on save. Also errors are [pretty printed](https://github.com/AriaMinaei/pretty-error) in dev mode. Finally output is piped to bunyan to pretty print logs too.
 
 ### Tests
-Tests were written using Jest. The test files are closed to source feature being tested. `yarn test` will run all tests and generate code coverage. If you want to see and browse generated statistics on your browser you can run `yarn open:coverage`.
+Tests were written using Jest. The test files are next to source feature being tested. `yarn test` will lint code and run all tests to generate code coverage. If you want to see and browse generated statistics on your browser you can run `yarn open:coverage`.
+
 `yarn test:watch` will run tests and bring jest interactive console. The code coverage was disabled in watch mode to speed up feedback.
+
+By default Jest will try to find affected testes since the last commit. You can type 'a' to run all tests.
 
 #### package.json tasks
 
