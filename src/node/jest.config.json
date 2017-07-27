@@ -1,0 +1,27 @@
+{
+   "collectCoverage":true,
+   "coverageThreshold":{
+      "global":{
+         "branches":85,
+         "functions":85,
+         "lines":85,
+         "statements":85
+      }
+   },
+   "collectCoverageFrom":[
+      "**/*.js",
+      "!index.js",
+      "!app.js",
+      "!dist/**/*.js",
+      "!db/migrations/*.js",
+      "!coverage/**/*.js"
+   ],
+   "testMatch":[
+      "**/?(*.)(spec).js?(x)"
+   ],
+   "testPathIgnorePatterns":[
+      "<rootDir>/dist/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/coverage/"
+   ]
+}

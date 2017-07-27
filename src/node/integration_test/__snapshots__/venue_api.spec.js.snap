@@ -1,0 +1,95 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`venues api DELETE /venues/:id 1`] = `
+Object {
+  "info": "success",
+}
+`;
+
+exports[`venues api GET /not_found 1`] = `
+Object {
+  "error": "Page not found",
+}
+`;
+
+exports[`venues api GET /venues 1`] = `
+Array [
+  Object {
+    "id": 14672,
+    "items": Array [
+      "product item",
+      "space item",
+    ],
+    "name": "venue",
+  },
+]
+`;
+
+exports[`venues api GET /venues/:id 1`] = `
+Object {
+  "id": 14673,
+  "items": Array [
+    Object {
+      "id": 28654,
+      "name": "product item",
+      "product": Object {
+        "id": 16730,
+        "item_id": 28654,
+        "price": 75.12,
+      },
+      "space": Object {},
+      "venue_id": 14673,
+    },
+    Object {
+      "id": 28655,
+      "name": "space item",
+      "product": Object {},
+      "space": Object {
+        "hour_price": 25.98,
+        "id": 21917,
+        "item_id": 28655,
+      },
+      "venue_id": 14673,
+    },
+  ],
+  "name": "venue",
+}
+`;
+
+exports[`venues api PATCH /venues/:id 1`] = `
+Object {
+  "id": 14675,
+  "items": Array [
+    Object {
+      "id": 28656,
+      "name": "product item",
+      "product": Object {
+        "id": 16731,
+        "item_id": 28656,
+        "price": 75.12,
+      },
+      "space": Object {},
+      "venue_id": 14675,
+    },
+    Object {
+      "id": 28657,
+      "name": "space item",
+      "product": Object {},
+      "space": Object {
+        "hour_price": 25.98,
+        "id": 21918,
+        "item_id": 28657,
+      },
+      "venue_id": 14675,
+    },
+  ],
+  "name": "venue_updated",
+}
+`;
+
+exports[`venues api POST /venues 1`] = `
+Object {
+  "id": 14674,
+  "name": "venue name",
+}
+`;

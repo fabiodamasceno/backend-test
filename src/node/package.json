@@ -1,8 +1,46 @@
 {
-	"name": "backend-test",
-	"version": "1.0.0",
-	"main": "index.js",
-	"scripts": {
-		"start": "node ."
-	}
+   "name": "backend-test",
+   "version": "1.0.0",
+   "main": "index.js",
+   "license": "MIT",
+   "engineStrict": true,
+   "engines": {
+      "node": ">=8"
+   },
+   "scripts": {
+      "clean": "rm -rf dist coverage ./*.sqlite3",
+      "lint": "eslint .",
+      "compile": "babel . --ignore node_modules,coverage,dist -q -d dist",
+      "migrate": "knex migrate:latest --knexfile ./db/knexfile.js --cwd .",
+      "migrate:rollback": "knex migrate:rollback --knexfile ./db/knexfile.js --cwd .",
+      "open:coverage": "sensible-browser coverage/lcov-report/index.html",
+      "test": "rm -f ./db.test.sqlite3 && npm run migrate -- --env=test && npm run lint && jest --config=jest.config.json --testPathIgnorePatterns='<rootDir>/integration_test/'",
+      "test:watch": "npm run test -- --watch --collectCoverage false",
+      "test:integration": "rm -f ./db.test.sqlite3 && npm run migrate -- --env test && npm run lint && jest --config=jest.config.json --collectCoverage false --forceExit integration_test/***.js ",
+      "dev": "npm run compile -s && node --require pretty-error/start dist/index.js | bunyan",
+      "dev:watch": "nodemon --ignore 'dist' --exec 'npm run dev'",
+      "start": "npm run compile -s && node dist/index.js | bunyan"
+   },
+   "dependencies": {
+      "bookshelf": "^0.10.3",
+      "bookshelf-cascade-delete": "^2.0.1",
+      "bookshelf-joi-validator": "^0.2.4",
+      "bunyan": "^1.8.10",
+      "joi": "^10.6.0",
+      "koa": "^2.3.0",
+      "koa-bodyparser": "^4.2.0",
+      "koa-router": "^7.2.1"
+   },
+   "devDependencies": {
+      "babel-cli": "^6.24.1",
+      "babel-plugin-transform-async-to-generator": "^6.24.1",
+      "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
+      "eslint": "^4.1.1",
+      "jest": "^20.0.4",
+      "knex": "^0.13.0",
+      "nodemon": "^1.11.0",
+      "pretty-error": "^2.1.1",
+      "sqlite3": "^3.1.8",
+      "supertest": "^3.0.0"
+   }
 }
