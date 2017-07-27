@@ -4,7 +4,7 @@ This application is the node port from php code requested in Task 2.
 # Notes
   - This app was written in _ES2017_ using Babel,
   - Tasks were automated through npm & yarn scripts,
-  - Because of commands like pipe, this should work only in a unix based environment,
+  - Because of commands like pipe, this should work only in a unix based environment and
   - There are no "Models" folder, [see here why](https://github.com/wearehive/project-guidelines#structure-and-naming).
 
 # Application
@@ -30,9 +30,9 @@ Tests were written using Jest. The test files are next to source feature being t
 By default Jest will try to find affected tests since the last commit. You can type `a` to run all tests.
 
 ### Integration tests
-Integration tests uses [supertest](https://github.com/visionmedia/supertest) to start api and create a facade to make requests.
-Assertions are made using the awesome [jest snapshot](https://facebook.github.io/jest/docs/snapshot-testing.html) feature.
-This tools are awesome because they will assert that the api won't break any previous contract accidentaly.
+Integration tests uses [supertest](https://github.com/visionmedia/supertest) to start api and create a facade to make requests. Assertions are made using the [jest snapshot](https://facebook.github.io/jest/docs/snapshot-testing.html) feature.
+
+This tools are awesome because they will ensure that the api won't break any previous contract accidentaly.
 
 #### package.json tasks
 
@@ -50,3 +50,15 @@ This tools are awesome because they will assert that the api won't break any pre
 | dev | runs the application dev tools |
 | dev:watch | runs the application with dev tools and watch for changes |
 | start | runs the application  |
+
+### About nice to have
+
+#### Validation
+Validation are made in three points of application:
+
+1. When a request happens (via middleware)
+2. Before insert a model
+3. Before update a model
+
+A [joi schema](https://github.com/hapijs/joi) in the Model will validate the events. 
+A centralized schema can be created for every event, or each event can have your schema.
